@@ -105,7 +105,7 @@ plt.show()
 ![FFT](https://github.com/user-attachments/assets/99e80079-0f2a-4836-a531-08630d3283f8)
 
 
-La Densidad Espectral es una medida que describe cómo se distribuye la energía de una señal en función de la frecuencia, es útil para para detectar ruido, analizar componentes de la señal y mejorar la calidad del procesamiento.
+La Densidad Espectral es una medida que describe cómo se distribuye la energía de una señal en función de la frecuencia, es útil para detectar ruido, analizar componentes de la señal y mejorar la calidad del procesamiento.
 
 ```python
 frecuencias_psd, psd = welch(datos, fs=frecuencia, nperseg=1024)
