@@ -51,7 +51,8 @@ print("Valor máximo:",valor_max)
 ```
 Además se graficó la señal en función del tiempo y se describió en cuanto a su clasificación: Una señal de ECG es multicanal pero en este caso vemos la gráfica de solo la derivación I haciendola de un único canal, además es unidimensional, ya que depende del tiempo y discreta al estar digitalizada.
 
-![señal emg](https://github.com/user-attachments/assets/c857b35b-396c-46df-94f4-e76c9591570b)
+![Señal de ECG](https://github.com/user-attachments/assets/01cf75ec-e25a-4585-bbe4-6c3dc7a7b356)
+
 
 ## Estadísticos descriptivos
 Para caracterizar la señal se calcularon la media, la desviación estandar, el coeficiente de variación y un histograma de frecuencias junto con la función de probabilidad. Estos estadísticos descriptivos permiten conocer que tan dispersos o juntos están los datos, asi como su distribución y frecuencia.
@@ -101,7 +102,8 @@ plt.grid()
 plt.xlim(0, limite_frecuencia)  
 plt.show()
 ```
-![señal fft](https://github.com/user-attachments/assets/c857b35b-396c-46df-94f4-e76c9591570b)
+![FFT](https://github.com/user-attachments/assets/99e80079-0f2a-4836-a531-08630d3283f8)
+
 
 La Densidad Espectral es una medida que describe cómo se distribuye la energía de una señal en función de la frecuencia, es útil para para detectar ruido, analizar componentes de la señal y mejorar la calidad del procesamiento.
 
@@ -116,7 +118,7 @@ plt.grid()
 plt.xlim(0, limite_frecuencia)
 plt.show()
 ```
-![señal densidad_espectral](https://github.com/user-attachments/assets/c857b35b-396c-46df-94f4-e76c9591570b)
+![densidad](https://github.com/user-attachments/assets/97d615d4-9a8d-43d4-a4f6-6eac5bfd0de0)
 
 
 
