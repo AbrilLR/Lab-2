@@ -52,7 +52,7 @@ print("Valor máximo:",valor_max)
 Además se graficó la señal en función del tiempo y se describió en cuanto a su clasificación: Una señal de ECG es multicanal pero en este caso vemos la gráfica de solo la derivación I haciendola de un único canal, además es unidimensional, ya que depende del tiempo y discreta al estar digitalizada.
 ![señal emg](https://github.com/user-attachments/assets/c857b35b-396c-46df-94f4-e76c9591570b)
 
-###Estadísticos descriptivos
+## Estadísticos descriptivos
 Para caracterizar la señal se calcularon la media, la desviación estandar, el coeficiente de variación y un histograma de frecuencias junto con la función de probabilidad. Estos estadísticos descriptivos permiten conocer que tan dispersos o juntos están los datos, asi como su distribución y frecuencia.
 ```python
 #Media
@@ -82,8 +82,7 @@ plt.grid(True)
 plt.legend()
 plt.show()
 ```
-
-###Transformada de fourier y densidad espectral
+## Transformada de Fourier y Densidad espectral
 La Transformada de Fourier es una herramienta fundamental en el procesamiento de señales porque permite convertir una señal del dominio del tiempo al dominio de la frecuencia, permitiendo identificar qué frecuencias están presentes en una señal y con qué intensidad.
 En el código se utiliza la Transformada Rápida de Fourier (FFT) sobre la señal y además se gráfica su espectro de frecuencia hasta 50 Hz, que es un rango de valores donde se encuentran las frecuencias de un ECG. 
 ```python
