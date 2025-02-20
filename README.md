@@ -28,7 +28,7 @@ print("Abril (h[n] * x[n]):", Abril_y.tolist())
 
 ```
 ### Señal en función del tiempo
-Se obtuvo una señal de ECG de la base de datos Physionet. La base de datos contiene 310 registros de ECG obtenidos de 90 personas, que incluyen la derivación I del ECG registrada durante 20 segundos, digitalizada a 500 Hz con una resolución de 12 bits en un rango nominal de ±10 mV. Cada registro incluye tanto la señal sin procesar como la señal filtrada.
+Se obtuvo una señal de ECG de la base de datos Physionet. La base de datos contiene 310 registros de ECG obtenidos de 90 personas, que incluyen la derivación I del ECG registrada durante 20 segundos y digitalizada a 500 Hz. Cada registro incluye tanto la señal sin procesar como la señal filtrada.
 
 Se guardaron los datos que fueron extraidos de los archivos .dat y .hea en un arreglo Numpy gracias a la libreria WFDB. De estos archivos tambien podemos obtener información sobre la señal como su frecuencia, número de muestras, valor mínimo y máximo de los datos.
 
