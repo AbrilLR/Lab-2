@@ -49,7 +49,7 @@ valor_max = np.max(datos)
 print("Valor mínimo:",valor_min)
 print("Valor máximo:",valor_max)
 ```
-Además se graficó la señal en función del tiempo y se describió en cuanto a su clasificación: Una señal de ECG es multicanal pero en este caso vemos la gráfica de solo la derivación I haciendola de un único canal, además es unidimensional, ya que depende del tiempo y discreta al estar digitalizada
+Además se graficó la señal en función del tiempo y se describió en cuanto a su clasificación: Una señal de ECG es multicanal pero en este caso vemos la gráfica de solo la derivación I haciendola de un único canal, además es unidimensional, ya que depende del tiempo y discreta al estar digitalizada.
 
 ![señal emg](https://github.com/user-attachments/assets/c857b35b-396c-46df-94f4-e76c9591570b)
 
@@ -84,7 +84,7 @@ plt.legend()
 plt.show()
 ```
 ## Transformada de Fourier y Densidad espectral
-La Transformada de Fourier es una herramienta fundamental en el procesamiento de señales porque permite convertir una señal del dominio del tiempo al dominio de la frecuencia, permitiendo identificar qué frecuencias están presentes en una señal y con qué intensidad. En el código se utiliza la Transformada Rápida de Fourier (FFT) sobre la señal y además se gráfica su espectro de frecuencia hasta 50 Hz.
+La Transformada de Fourier es una herramienta fundamental en el procesamiento de señales porque permite convertir una señal del dominio del tiempo al dominio de la frecuencia, permitiendo identificar qué frecuencias están presentes en una señal y con qué intensidad. Se utiliza la Transformada Rápida de Fourier (FFT) sobre la señal y además se gráfica su espectro de frecuencia hasta 50 Hz.
 
 ```python
 fxt = np.fft.fft(datos)
