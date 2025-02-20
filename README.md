@@ -27,7 +27,96 @@ print("Abril (h[n] * x[n]):", Abril_y.tolist())
 
 
 ```
+### Señal en función del tiempo
+Para poder convertir una señal del dominio del tiempo al dominio de la frecuencia es necesario caracterizarla además de conocer su clasificación, para esto se obtuvo una señal de ECG de la base de datos Physionet. La base de datos contiene 310 registros de ECG obtenidos de 90 personas, que incluyen la derivación I del ECG registrada durante 20 segundos, digitalizada a 500 Hz con una resolución de 12 bits en un rango nominal de ±10 mV. Cada registro incluye tanto la señal sin procesar como la señal filtrada.
 
+Se guardaron los datos que fueron extraidos de los archivos .dat y .hea en un arreglo Numpy gracias a la libreria WFDB. De estos archivos tambien podemos obtener información sobre la señal como su frecuencia, número de muestras, valor mínimo y máximo de los datos.
+
+```python
+archivo = 'C:/Users/Usuario/Downloads/Señales lab 2/rec_1'
+registro = wfdb.rdrecord(archivo)
+arreglo = registro.p_signal 
+datos = arreglo[:, 1]
+
+frecuencia = registro.fs
+print("Frecuencia de muestreo:",frecuencia, "Hz")
+periodo = 1 / frecuencia
+print("Tiempo entre muestras:",periodo, "s")
+num_muestras = registro.sig_len
+print("El número de muestras en el registro es:",num_muestras)
+valor_min = np.min(datos)
+valor_max = np.max(datos)
+print("Valor mínimo:",valor_min)
+print("Valor máximo:",valor_max)
+```
+Además se graficó la señal en función del tiempo y se describió en cuanto a su clasificación: Una señal de ECG es multicanal pero en este caso vemos la gráfica de solo la derivación I haciendola de un único canal, además es unidimensional, ya que depende del tiempo y discreta al estar digitalizada.
+![señal emg](https://github.com/user-attachments/assets/c857b35b-396c-46df-94f4-e76c9591570b)
+
+###Estadísticos descriptivos
+Para caracterizar la señal se calcularon la media, la desviación estandar, el coeficiente de variación y un histograma de frecuencias junto con la función de probabilidad. Estos estadísticos descriptivos permiten conocer que tan dispersos o juntos están los datos, asi como su distribución y frecuencia.
+```python
+#Media
+media = np.mean(datos)
+print("Media:",media)
+
+#Desviación 
+desv = np.std(datos)
+print("Desviación:",desv)
+
+#Coeficiente de variación
+cv = variation(datos) * 100
+print("Coeficiente de variación:",cv,"%")
+
+#Histograma
+plt.figure(figsize=(10, 6))
+count, bins, _ = plt.hist(datos, bins=17, alpha=0.6, color='g', edgecolor='black', label="Histograma (Frecuencia)")
+x = np.linspace(min(datos), max(datos), 900000)
+y = norm.pdf(x, media, desv)  
+scale_factor = max(count) / max(y)  
+y_scaled = y * scale_factor
+plt.plot(x, y_scaled, color='red', linewidth=2, label="Función de probabilidad")
+plt.title('Histograma de Frecuencia y Función de probabilidad ECG')
+plt.xlabel('Voltaje (mV)')
+plt.ylabel('Frecuencia')
+plt.grid(True)
+plt.legend()
+plt.show()
+```
+
+###Transformada de fourier y densidad espectral
+La Transformada de Fourier es una herramienta fundamental en el procesamiento de señales porque permite convertir una señal del dominio del tiempo al dominio de la frecuencia, permitiendo identificar qué frecuencias están presentes en una señal y con qué intensidad.
+En el código se utiliza la Transformada Rápida de Fourier (FFT) sobre la señal y además se gráfica su espectro de frecuencia hasta 50 Hz, que es un rango de valores donde se encuentran las frecuencias de un ECG. 
+```python
+fxt = np.fft.fft(datos)
+frecuencias = np.fft.fftfreq(len(datos), d=1/frecuencia)
+limite_frecuencia = 50
+mask = (frecuencias >= 0) & (frecuencias <= limite_frecuencia)
+plt.figure(figsize=(10, 5))
+
+plt.plot(frecuencias[mask], np.abs(fxt[mask]))
+plt.title("FFT")
+plt.ylabel("Magnitud")
+plt.xlabel("Frecuencia (Hz)")
+plt.grid()
+plt.xlim(0, limite_frecuencia)  
+plt.show()
+```
+![señal fft](https://github.com/user-attachments/assets/c857b35b-396c-46df-94f4-e76c9591570b)
+
+La Densidad Espectral es una medida que describe cómo se distribuye la energía de una señal en función de la frecuencia, es útil para para detectar ruido, analizar componentes de la señal y mejorar la calidad del procesamiento.
+
+```python
+frecuencias_psd, psd = welch(datos, fs=frecuencia, nperseg=1024)
+plt.figure(figsize=(8, 5))
+plt.plot(frecuencias_psd, psd, color='blue')
+plt.title("Densidad Espectral de Potencia (PSD)")
+plt.xlabel("Frecuencia (Hz)")
+plt.ylabel("Densidad de Potencia (V²/Hz)")
+plt.grid()
+plt.xlim(0, limite_frecuencia)
+plt.show()
+```
+![señal densidad_espectral](https://github.com/user-attachments/assets/c857b35b-396c-46df-94f4-e76c9591570b)
 
 
 
