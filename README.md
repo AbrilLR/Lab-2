@@ -5,28 +5,39 @@ El objetivo de esta práctica de laboratorio fue aplicar los conceptos de convol
 
 ## Convolución 
 
+La convolución es una operación que combina dos funciones para describir la superposición entre ambas. Este proceso consiste en deslizar una función sobre la otra, multiplicar los valores de ambas funciones en todos los puntos de superposición y sumar los productos para generar una nueva función que representa la interacción entre las funciones originales.
 
+Específicamente en el procesamiento de señales, la convolución es fundamental para estudiar y diseñar sistemas lineales de tiempo invariante , como pueden los filtros digitales. La salida de un sistema LTI es la convolución de la señal de entrada X[n] y la respuesta al impulso del sistema H[n] obteniendo la señal de salida y[n].
+
+En primer lugar se realizo la convolucion de manera manual mediante sumatorias utilizando el número de cédula como la señal de entrada (X[n]) y el número de código estudiantil como el sistema o respuesta al impulso (H[n]) para hallar la señal resultante de la convolución, esta operación se realizó para cada uno de los 3 integrantes del grupo 
+
+![ConvAnd](https://github.com/user-attachments/assets/08f80e8e-7005-491d-87a0-ba36bcd23db8)
+
+![ConvJo](https://github.com/user-attachments/assets/1ea15b51-cc0f-4227-86b1-75d4725b6847)
+
+![ConvAB](https://github.com/user-attachments/assets/235d919e-7373-432d-803d-43ba8aa5b2b6)
+
+Para realizar la convolución mediante funciones de python se desarrolló el siguiente código. En el cual se definen  dos arreglos para las secuencias h y x para cada persona.
+Siendo h  la respuesta al impulso del sistema, que simula cómo reacciona un sistema a una señal de entrada y x es la señal de entrada, que representa la información que entra en el sistema
 ```python
 Andrea_h = np.array([5, 6, 0, 0, 6, 8, 8])  
-Andrea_x = np.array([1, 0, 0, 7, 3, 4, 0, 3, 9, 0])  
-
-Johan_h = np.array([5, 6, 0, 0, 7, 0 , 2])  
-Johan_x = np.array([1, 0, 7, 5, 6, 5, 1, 2, 3, 3])  
-
-Abril_h = np.array([5, 6, 0, 0, 7, 2, 9])  
-Abril_x = np.array([1, 1, 0, 4, 5, 4, 4, 8, 8, 8])
-
+Andrea_x = np.array([1, 0, 0, 7, 3, 4, 0, 3, 9, 0])
 
 Andrea_y = np.convolve(Andrea_x, Andrea_h)
-Johan_y = np.convolve(Johan_x, Johan_h)
-Abril_y = np.convolve(Abril_x, Abril_h)
 
-print("Andrea (h[n] * x[n]):", Andrea_y .tolist())
-print("Johan (h[n] * x[n]):", Johan_y.tolist())
-print("Abril (h[n] * x[n]):", Abril_y.tolist())
-
-
+axs[0].stem(Andrea_y, basefmt=" ", linefmt="b-", markerfmt="bo")
+axs[0].set_title("Convolución Andrea")
+axs[0].set_xlabel("n")
+axs[0].set_ylabel("Amplitud")
 ```
+
+La función np.convolve de la libreria numpy realiza la operación matemática de convolución para combinar x[n] y h[n]. El resultado es una nueva señal y[n], que describe cómo interactúan x y h entre sí. Posteriormente se grafica con la función axs[0].stem  que grafica la convolución en formato de gráfico de tallo (donde cada punto es un tallo que indica la amplitud de la señal en cada índice n).
+
+El código de python da como resultado
+
+![conv](https://github.com/user-attachments/assets/e27350be-d313-40d5-a08b-7691127761be)
+
+
 ### Señal en función del tiempo
 Se obtuvo una señal de ECG de la base de datos Physionet. La base de datos contiene 310 registros obtenidos de 90 personas, que incluyen la derivación I registrada durante 20 segundos y digitalizada a 500 Hz. Cada registro incluye tanto la señal sin procesar como la señal filtrada.
 
