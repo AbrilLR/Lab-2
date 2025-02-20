@@ -1,5 +1,5 @@
 # Convolución, correlación y transformación
-## Descipción
+## Descripción
 
 El objetivo de esta práctica de laboratorio fue aplicar los conceptos de convolución, correlación y la transformada de Fourier, los cuales permiten el análisis de señales. La convolución es una herramienta esencial para analizar la respuesta de sistemas lineales e invariantes en el tiempo. La correlación permite medir la similitud entre señales, por su parte la transformada de Fourier facilita entender el comportamiento de las señales en el dominio de la frecuencia.
 
