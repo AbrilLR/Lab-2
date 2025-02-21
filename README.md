@@ -153,6 +153,33 @@ plt.show()
 ```
 ![densidad](https://github.com/user-attachments/assets/97d615d4-9a8d-43d4-a4f6-6eac5bfd0de0)
 
+Por ultimo se calcularon lo estadisticos de media, mediana desviación estandar, y el histograma de las frecuencias obtenidas de la transformada de Fourier, los cuales como ya se mencionó anteriormente nos indican la dispersión, promedio y comportamiento de los datos obtenidos:
+```python
+#Media de la frecuencia
+frecuencia_media = np.sum(frecuencias_psd * psd) / np.sum(psd)
+print("Frecuencia media:",frecuencia_media,"Hz")
+
+#Mediana de la frecuencia
+potencia_acumulada = np.cumsum(psd) 
+potencia_total = np.sum(psd)
+frecuencia_mediana = frecuencias_psd[np.where(potencia_acumulada >= potencia_total / 2)[0][0]]
+print("Frecuencia mediana:",frecuencia_mediana,"Hz")
+
+# Desviación estándar de la frecuencia
+desviacion_frecuencia = np.sqrt(np.sum(psd * (frecuencias_psd - frecuencia_media)**2) / np.sum(psd))
+print("Desviación estándar de la frecuencia:", desviacion_frecuencia,"Hz")
+
+# Histograma de la magnitud de la FFT
+plt.figure(figsize=(10, 6))
+plt.hist(np.abs(fxt[mask]), bins=17, color='b', alpha=0.7, edgecolor='black')
+plt.title("Histograma de la Magnitud de la Transformada de Fourier")
+plt.xlabel("Magnitud de la FFT")
+plt.ylabel("Frecuencia")
+plt.grid()
+plt.show()
+```
+
+<img width="620" alt="Figure 2025-02-20 232734" src="https://github.com/user-attachments/assets/5233f28b-cea4-48e7-81ef-e1ab2fb43014" />
 
 
 ### Requisitos 
