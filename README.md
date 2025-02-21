@@ -11,11 +11,14 @@ Específicamente en el procesamiento de señales, la convolución es fundamental
 
 En primer lugar se realizo la convolucion de manera manual mediante sumatorias utilizando el número de cédula como la señal de entrada (X[n]) y el número de código estudiantil como el sistema o respuesta al impulso (H[n]) para hallar la señal resultante de la convolución, esta operación se realizó para cada uno de los 3 integrantes del grupo 
 
-![ConvAnd](https://github.com/user-attachments/assets/08f80e8e-7005-491d-87a0-ba36bcd23db8)
 
-![ConvJo](https://github.com/user-attachments/assets/1ea15b51-cc0f-4227-86b1-75d4725b6847)
 
-![ConvAB](https://github.com/user-attachments/assets/235d919e-7373-432d-803d-43ba8aa5b2b6)
+![CAn](https://github.com/user-attachments/assets/f5aaebf7-d93e-4706-ac4f-e3d3ad555165)
+
+![Cjh](https://github.com/user-attachments/assets/4a95aabe-28f3-433d-a632-fe114bf76731)
+
+![CAb](https://github.com/user-attachments/assets/cb94c698-32f2-4e7e-8a13-b3cb46e63da7)
+
 
 Para realizar la convolución mediante funciones de python se desarrolló el siguiente código. En el cual se definen  dos arreglos para las secuencias h y x para cada persona.
 Siendo h  la respuesta al impulso del sistema, que simula cómo reacciona un sistema a una señal de entrada y x es la señal de entrada, que representa la información que entra en el sistema
