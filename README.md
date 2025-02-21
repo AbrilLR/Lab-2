@@ -40,6 +40,25 @@ El código de python da como resultado
 
 ![conv](https://github.com/user-attachments/assets/e27350be-d313-40d5-a08b-7691127761be)
 
+## Correlación
+Para este apartado se usaron dos señales 𝑥1[𝑛𝑇𝑠]=cos(2𝜋100𝑛𝑇𝑠) 𝑝𝑎𝑟𝑎 0 ≤𝑛< 9, y 𝑥2[𝑛𝑇𝑠]=sin(2𝜋100𝑛𝑇𝑠) 𝑝𝑎𝑟𝑎 0 ≤𝑛< 9 con un periodo 𝑇𝑠=1.25𝑚𝑠, con el proposito de obtener y visualizar su correlación, en primer lugar se definen los parametros de las señales y se define n (valor entre 0 y 9) como un arreglo mediante np.arange, y se calcula su correlación cruzada directa con la función np.correlate que hace la tarea directamente, sin embargo para obtener la correlación cruzada normalizada o tambien conocida como (valor entre -1 y 1) se define la variable correlación_n y se calcula el coeficiente de correlación de Pearson mediante su respectiva formula usando np.linalg.norm para calcular la norma de ambas señales obteniendo el siguiente código:
+```python
+fs = 1 / 1.25e-3
+Ts = 1 / fs 
+n = np.arange(0, 9)  
+
+
+x1 = np.cos(2 * np.pi * 100 * n * Ts)
+x2 = np.sin(2 * np.pi * 100 * n * Ts)
+
+# correlación 
+correlacion = np.correlate(x1, x2, mode='full')
+correlacion_n = correlacion / (np.linalg.norm(x1) * np.linalg.norm(x2))
+print("correlación:", np.max(correlacion_n))
+```
+Al final de la sección se imprime el valor máximo de correlación entre los datos que es el que representa la correlación entre las gráficas en donde 1 significa que las señales son identicas , 0 indica que no hay correlación, y -1 indica que una señal es la inversa de la otra, para este caso se obtuvo una correlación de 0.7826237921249264, indicando un similitud entre las señales que no es exacta debido a que la función coseno se adelanta respecto a seno, por ultimo se gráfican las señales discretas y su correlación, el eje x que corresponde al eje de retardos, que nos indica en que valor de retardo la señales se alinean mejor o peor, a continuación las gráficas:
+
+<img width="857" alt="Figure 2025-02-20 223015" src="https://github.com/user-attachments/assets/1ac14050-e093-41d0-b66e-c1743503c9ad" />
 
 ## Señal en función del tiempo
 Se obtuvo una señal de ECG de la base de datos Physionet. La base de datos contiene 310 registros obtenidos de 90 personas, que incluyen la derivación I registrada durante 20 segundos y digitalizada a 500 Hz. Cada registro incluye tanto la señal sin procesar como la señal filtrada.
